@@ -4,7 +4,7 @@ use algebra::{
     to_bytes, ToBytes,
 };
 #[cfg(debug_assertions)]
-use gm17::PreparedVerifyingKey;
+use groth16::PreparedVerifyingKey;
 use rand::SeedableRng;
 use rand_xorshift::XorShiftRng;
 

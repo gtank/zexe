@@ -10,7 +10,6 @@ use crypto_primitives::{
         pedersen::PedersenWindow,
     },
     merkle_tree::MerkleTreeConfig,
-    nizk::Gm17,
     prf::blake2s::Blake2s,
 };
 
@@ -20,9 +19,11 @@ use crypto_primitives::{
         injective_map::constraints::PedersenCommitmentCompressorGadget,
     },
     crh::injective_map::constraints::{PedersenCRHCompressorGadget, TECompressorGadget},
-    nizk::gm17::constraints::Gm17VerifierGadget,
+    nizk::Groth16,
+    nizk::groth16::constraints::Groth16VerifierGadget,
     prf::blake2s::constraints::Blake2sGadget,
 };
+
 use r1cs_std::{
     bls12_377::PairingGadget, ed_on_bls12_377::EdwardsGadget as EdwardsBlsGadget,
     ed_on_cp6_782::EdwardsGadget as EdwardsCP6Gadget,
@@ -146,10 +147,10 @@ pub type PredVkCRH = PedersenCRHCompressor<EdwardsCP6, EdwardsCompressor, PredVk
 
 pub type Predicate = DPCPredicate<Components>;
 pub type CoreCheckNIZK =
-    Gm17<CoreCheckPairing, CoreChecksCircuit<Components>, CoreChecksVerifierInput<Components>>;
+    Groth16<CoreCheckPairing, CoreChecksCircuit<Components>, CoreChecksVerifierInput<Components>>;
 pub type ProofCheckNIZK =
-    Gm17<ProofCheckPairing, ProofCheckCircuit<Components>, ProofCheckVerifierInput<Components>>;
-pub type PredicateNIZK<C> = Gm17<CoreCheckPairing, EmptyPredicateCircuit<C>, PredicateLocalData<C>>;
+    Groth16<ProofCheckPairing, ProofCheckCircuit<Components>, ProofCheckVerifierInput<Components>>;
+pub type PredicateNIZK<C> = Groth16<CoreCheckPairing, EmptyPredicateCircuit<C>, PredicateLocalData<C>>;
 pub type PRF = Blake2s;
 
 // Gadgets
@@ -201,7 +202,7 @@ pub type PredVkCRHGadget = PedersenCRHCompressorGadget<
 >;
 
 pub type PRFGadget = Blake2sGadget;
-pub type PredicateNIZKGadget = Gm17VerifierGadget<CoreCheckPairing, ProofCheckF, PairingGadget>;
+pub type PredicateNIZKGadget = Groth16VerifierGadget<CoreCheckPairing, ProofCheckF, PairingGadget>;
 //
 
 pub type MerkleTreeIdealLedger = IdealLedger<Tx, CommitmentMerkleTreeConfig>;
