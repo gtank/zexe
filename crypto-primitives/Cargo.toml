@@ -13,7 +13,7 @@ description = "A library of cryptographic primitives that are used by Zexe"
 homepage = "https://libzexe.org"
 repository = "https://github.com/scipr/zexe"
 documentation = "https://docs.rs/crypto-primitives/"
-keywords = ["r1cs", "groth16", "gm17", "pedersen", "blake2s"]
+keywords = ["r1cs", "groth16", "pedersen", "blake2s"]
 categories = ["cryptography"]
 include = ["Cargo.toml", "src", "README.md", "LICENSE-APACHE", "LICENSE-MIT"]
 license = "MIT/Apache-2.0"
@@ -29,7 +29,6 @@ blake2 = { version = "0.8", default-features = false }
 digest = "0.8"
 
 ff-fft = { path = "../ff-fft", default-features = false }
-gm17 = { path = "../gm17", optional = true, default-features = false }
 groth16 = { path = "../groth16", optional = true, default-features = false }
 
 r1cs-core = { path = "../r1cs-core", optional = true, default-features = false }
@@ -43,7 +42,7 @@ derivative = { version = "2.0", features = ["use_core"] }
 default = ["std"]
 r1cs = ["r1cs-core", "r1cs-std"]
 std = ["r1cs", "algebra-core/std", "r1cs-core/std", "r1cs-std/std"]
-parallel = ["std", "rayon", "gm17/parallel", "groth16/parallel", "ff-fft/parallel"]
+parallel = ["std", "rayon", "groth16/parallel", "ff-fft/parallel"]
 
 [dev-dependencies]
 algebra = { path = "../algebra", default-features = false, features = [ "ed_on_bls12_381", "bls12_377", "mnt4_298", "mnt6_298" ] }

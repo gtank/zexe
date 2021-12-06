@@ -37,7 +37,7 @@ This repository contains several Rust crates that implement the different buildi
 * [`ff-fft`](ff-fft): Rust crate that provides efficient finite field polynomial arithmetic based on finite field FFTs
 * [`r1cs-core`](r1cs-core): Rust crate that defines core interfaces for a Rank-1 Constraint System (R1CS)
 * [`r1cs-std`](r1cs-std): Rust crate that provides various gadgets used to construct R1CS
-* [`gm17`](gm17): Rust crate that implements the zkSNARK of [Groth and Maller][GM17]
+* [`gm17`](gm17): Rust crate that implements the zkSNARK of [Groth and Maller][GM17]. REMOVED FROM THIS FORK because it wouldn't build on Rust > 1.48.
 * [`groth16`](groth16): Rust crate that implements the zkSNARK of [Groth][Groth16]
 
 
